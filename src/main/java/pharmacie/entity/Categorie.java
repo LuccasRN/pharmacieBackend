@@ -1,7 +1,9 @@
 package pharmacie.entity;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -34,5 +36,8 @@ public class Categorie {
 	// pour éviter la boucle infinie si on convertit la catégorie en JSON
 	@JsonIgnoreProperties({"categorie", "lignes"})
 	private List<Medicament> medicaments = new LinkedList<>();
+
+	@ManyToMany(mappedBy = "categories")
+	private Set<Fournisseur> fournisseurs = new HashSet<>();
 
 }

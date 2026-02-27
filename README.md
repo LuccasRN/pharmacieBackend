@@ -59,7 +59,7 @@ Les contrôleurs exposent les points d'entrée REST pour interagir avec l'applic
 - [StatsMVCController](src/main/java/comptoirs/mvc/StatsMVCController.java): Fournit des vues HTML avec Thymeleaf pour les statistiques.
 
 #### Documentation API
-L'application expose sa documentation OpenAPI/Swagger à l'adresse : `http://localhost:8989/swagger-ui.html`
+L'application expose sa documentation OpenAPI/Swagger à l'adresse : `http://localhost:8080/swagger-ui.html`
 
 ## Technologies Utilisées
 - **Java 21 LTS**
@@ -82,12 +82,12 @@ L'application expose sa documentation OpenAPI/Swagger à l'adresse : `http://loc
 mvn clean spring-boot:run
 ```
 
-L'application démarre sur le port **8989** : `http://localhost:8989`
+L'application démarre sur le port **8080** : `http://localhost:8080`
 
 ### Accéder à la documentation API
 Une fois l'application démarrée, accédez à Swagger UI :
 ```
-http://localhost:8989/swagger-ui.html
+http://localhost:8080/swagger-ui.html
 ```
 
 ### Données de test
