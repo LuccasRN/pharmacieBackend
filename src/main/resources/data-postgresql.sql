@@ -1,7 +1,7 @@
 -- Données de base pour le projet Pharmacie
 -- Dispensaire (Etablissements de santé qui passent commande de médicaments)
 -- Le fichier est chargé au démarrage de l''application
-
+TRUNCATE TABLE fournisseur_categorie, fournisseur, ligne, commande, dispensaire, medicament, categorie RESTART IDENTITY CASCADE;
 -- Insertion des catégories de médicaments
 INSERT INTO CATEGORIE (CODE, LIBELLE, DESCRIPTION) VALUES
 (1, 'Antalgiques et Antipyrétiques', 'Médicaments contre la douleur et la fièvre'),
@@ -202,3 +202,8 @@ INSERT INTO fournisseur_categorie (fournisseur_id, categorie_code) VALUES (1, 7)
 INSERT INTO fournisseur_categorie (fournisseur_id, categorie_code) VALUES (2, 8), (3, 8);
 INSERT INTO fournisseur_categorie (fournisseur_id, categorie_code) VALUES (1, 9), (3, 9);
 INSERT INTO fournisseur_categorie (fournisseur_id, categorie_code) VALUES (2, 10), (3, 10);
+
+-- Al final de tu script data.sql
+SELECT setval(pg_get_serial_sequence('categorie', 'code'), (SELECT MAX(code) FROM categorie));
+SELECT setval(pg_get_serial_sequence('commande', 'numero'), (SELECT MAX(numero) FROM commande));
+SELECT setval(pg_get_serial_sequence('fournisseur', 'id'), (SELECT MAX(id) FROM fournisseur));
