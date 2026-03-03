@@ -25,14 +25,14 @@ public class ApprovisionnementService {
     private String mailFrom;
 
     public void traiterReapprovisionnement() {
-        // 1. Médicaments en sous-stock
+        
         List<Medicament> aReappro = medicamentRepository.findAll().stream()
                 .filter(m -> m.getUnitesEnStock() < m.getNiveauDeReappro())
                 .collect(Collectors.toList());
 
         if (aReappro.isEmpty()) return;
 
-        // 2. Grouper par fournisseur
+        
         Map<Fournisseur, List<Medicament>> envoisParFournisseur = new HashMap<>();
         for (Medicament m : aReappro) {
             for (Fournisseur f : m.getCategorie().getFournisseurs()) {
@@ -49,13 +49,13 @@ public class ApprovisionnementService {
     private void envoyerMailAppro(Fournisseur f, List<Medicament> medicaments) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(mailFrom);
-        message.setTo(f.getEmail()); // Pour le sandbox, cet email doit être "Authorized" dans Mailgun
+        message.setTo(f.getEmail()); 
         message.setSubject("Demande de devis réapprovisionnement - Pharmacie");
 
         StringBuilder corps = new StringBuilder("Bonjour " + f.getNom() + ",\n\n");
         corps.append("Voici la liste des produits à réapprovisionner pour notre pharmacie :\n");
 
-        // Groupement par catégorie pour la lisibilité
+        
         Map<String, List<Medicament>> parCat = medicaments.stream()
                 .collect(Collectors.groupingBy(m -> m.getCategorie().getLibelle()));
 

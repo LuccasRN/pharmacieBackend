@@ -182,18 +182,14 @@ INSERT INTO LIGNE (COMMANDE_NUMERO, MEDICAMENT_REFERENCE, QUANTITE) VALUES
 (7, 7, 80), (7, 17, 50), (7, 27, 95), (7, 37, 55), (7, 100, 45),
 (8, 8, 100), (8, 18, 75), (8, 28, 80), (8, 38, 70), (8, 48, 60);
 
--- Insertion des fournisseurs
 INSERT INTO FOURNISSEUR (NOM, EMAIL) VALUES
 ('Global Meds', 'lucasrodriguez260805+global@gmail.com'),
 ('Euro Pharma', 'lucasrodriguez260805+euro@gmail.com'),
 ('Pharma Supply Co', 'lucasrodriguez260805+supply@gmail.com');
 
--- Liaison Fournisseurs / Catégories (2 par catégorie)
--- Catégorie 1 (Antalgiques)
 INSERT INTO fournisseur_categorie (fournisseur_id, categorie_code) VALUES (1, 1), (2, 1);
--- Catégorie 2 (Anti-inflammatoires)
 INSERT INTO fournisseur_categorie (fournisseur_id, categorie_code) VALUES (2, 2), (3, 2);
--- Répéter pour les catégories 3 à 10...
+
 INSERT INTO fournisseur_categorie (fournisseur_id, categorie_code) VALUES (1, 3), (3, 3);
 INSERT INTO fournisseur_categorie (fournisseur_id, categorie_code) VALUES (1, 4), (2, 4);
 INSERT INTO fournisseur_categorie (fournisseur_id, categorie_code) VALUES (2, 5), (3, 5);
@@ -203,7 +199,7 @@ INSERT INTO fournisseur_categorie (fournisseur_id, categorie_code) VALUES (2, 8)
 INSERT INTO fournisseur_categorie (fournisseur_id, categorie_code) VALUES (1, 9), (3, 9);
 INSERT INTO fournisseur_categorie (fournisseur_id, categorie_code) VALUES (2, 10), (3, 10);
 
--- Al final de tu script data.sql
+
 SELECT setval(pg_get_serial_sequence('categorie', 'code'), (SELECT MAX(code) FROM categorie));
 SELECT setval(pg_get_serial_sequence('commande', 'numero'), (SELECT MAX(numero) FROM commande));
 SELECT setval(pg_get_serial_sequence('fournisseur', 'id'), (SELECT MAX(id) FROM fournisseur));
